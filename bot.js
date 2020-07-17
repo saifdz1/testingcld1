@@ -47,59 +47,6 @@ if (message.content.startsWith("+ping")) {
 
 
 
-client.on("message",function(message) {
-    if(message.content.startsWith(prefix + 'uptime')) {
-        let uptime = client.uptime;
-
-    let days = 0;
-    let hours = 0;
-    let minutes = 0;
-    let seconds = 0;
-    let notCompleted = true;
-
-    while (notCompleted) {
-
-        if (uptime >= 8.64e+7) {
-
-            days++;
-            uptime -= 8.64e+7;
-
-        } else if (uptime >= 3.6e+6) {
-
-            hours++;
-            uptime -= 3.6e+6;
-
-        } else if (uptime >= 60000) {
-
-            minutes++;
-            uptime -= 60000;
-
-        } else if (uptime >= 1000) {
-            seconds++;
-            uptime -= 1000;
-
-        }
-
-        if (uptime < 1000)  notCompleted = false;
-
-    }
-    
-let v1 = new Discord.RichEmbed()
-  v1.setTimestamp(new Date())
-  v1.setColor("RED")
-  v1.setDescription('***__ Collecting Data __***')
-  v1.setFooter("# | ALPHA 2020  |") 
-let norelden = new Discord.RichEmbed()
-.setColor('#9b59b6')
-.setTimestamp(new Date())
-.setThumbnail(client.user.avatarURL)
-.addField("UpTime :",`**[** **Days:** \`${days}\` **Hours:** \`${hours}\` **Minutes:** \`${minutes}\` **Seconds:** \`${seconds}\` **]**`,true)
-.setFooter(" ALPHA ");
-  message.channel.send({embed:v1}).then(m => m.edit({embed:norelden}),5000);
-}
-});
-
-
 
 client.on('message', message => {
     if (message.content.startsWith("$info")) {
@@ -109,16 +56,15 @@ client.on('message', message => {
             .setThumbnail(client.user.avatarURL)
             .setColor('RANDOM')
             .setTitle('``INFO ALPHA BOT`` ')
-            .addField('``Uptime``', [timeCon(process.uptime())], true)
-            .addField('``البنق``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
+            .addField('``Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
             .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
-            .addField('``السيرفرات``', [client.guilds.size], true)
-            .addField('``القنوات``' , `[ ${client.channels.size} ]` , true)
-            .addField('``المستخدمين``' ,`[ ${client.users.size} ]` , true)
-            .addField('``الإسم``' , `[ ${client.user.tag} ]` , true)
-            .addField('``الإيدي``' , `[ ${client.user.id} ]` , true)
+            .addField('``Servers``', [client.guilds.size], true)
+            .addField('``Chlns``' , `[ ${client.channels.size} ]` , true)
+            .addField('``Users``' ,`[ ${client.users.size} ]` , true)
+            .addField('``Bot Name``' , `[ ${client.user.tag} ]` , true)
+            .addField('``Bot Id``' , `[ ${client.user.id} ]` , true)
                   .addField('``Prefix``' , `[ ! ]` , true)
-                  .addField('``لغة البرمجة``' , `[ Java Script ]` , true)
+                  .addField('``Bot Framework``' , `[ Java Script ]` , true)
                   .addField('``المالك ``' , ` [ ★سہيہفُہ★ⓢⓐⓘⓕ#2042 ] ` , true)
     })
 }
