@@ -20,9 +20,9 @@ client.user.setGame(` ALPHA 2020 `,"https://discord.gg/afxBYJn")
   console.log('')
   console.log('Informations :')
   console.log('')
-  console.log(`servers! [ " ${client.guilds.size} " ]`);
-  console.log(`Users! [ " ${client.users.size} " ]`);
-  console.log(`channels! [ " ${client.channels.size} " ]`);
+  console.log(`servers! [ " ${client.guilds.cache.size} " ]`);
+  console.log(`Users! [ " ${client.users.cache.size} " ]`);
+  console.log(`channels! [ " ${client.channels.cache.size} " ]`);
   console.log('╚[════════════════════════════════════]╝')
   console.log('')
   console.log('╔[════════════]╗')
@@ -36,6 +36,7 @@ client.user.setGame(` ALPHA 2020 `,"https://discord.gg/afxBYJn")
 
 
 
+
 client.on('message',message => {
   var args = message.content.split(" ");
 	if (message.content.startsWith(prefix + "bot")){
@@ -44,13 +45,13 @@ client.on('message',message => {
     if (hoursing > 12) {
       var hoursing  = (hoursing-12);
     }
-        let embed = new  Discord.RichEmbed()
+        let embed = new Discord.MessageEmbed()
         
       .setColor('RANDOM')
       .setThumbnail(message.guild.iconURL)
       .setTitle(`:robot: Bot info `)
-      .addField(':desktop:  Servers :',client.guilds.size)
-      .addField(':busts_in_silhouette:   Users :',client.users.size)
+      .addField(':desktop:  Server:',client.guilds.cache.size)
+      .addField(':busts_in_silhouette:   Users :',client.users.cache.size)
         .addField('📶 Time Taken :', msg)
         .addField(':earth_asia: WebSocket :', client.ws.ping)
         .addField(':date: Uptime :', client.readyAt.getDate()+"/"+(client.readyAt.getMonth()+1)+"/"+client.readyAt.getFullYear()+" - "+(hoursing)+":"+client.readyAt.getMinutes()+":"+client.readyAt.getSeconds()+" (Mecca time)")
@@ -61,36 +62,35 @@ client.on('message',message => {
 
 
 
-
-
-
-
-client.on('message', async msg =>{
-	if (msg.author.bot) return undefined;
-    if (!msg.content.startsWith(prefix)) return undefined;
-    
-    let args = msg.content.split(' ');
-
-	let command = msg.content.toLowerCase().split(" ")[0];
-	command = command.slice(prefix.length)
-
-    if(command === `avatar`){
-	if(msg.channel.type === 'dm') return msg.channel.send("Nope Nope!! u can't use avatar command in DMs (:")
-        let mentions = msg.mentions.members.first()
-        if(!mentions) {
-          let sicon = msg.author.avatarURL
-          let embed = new Discord.RichEmbed()
-          .setImage(msg.author.avatarURL)
-          .setColor("#5074b3")
-          msg.channel.send({embed})
-        } else {
-          let sicon = mentions.user.avatarURL
-          let embed = new Discord.RichEmbed()
-          .setColor("#5074b3")
-          .setImage(sicon)
-          msg.channel.send({embed})
+client.on('message', function(message) {
+    if(message.content.startsWith(prefix+'roll')) {
+        let args = message.content.split(" ").slice(1);
+        if (!args[0]) {
+			let embed = new Discord.MessageEmbed()
+			.setTitle(` Command : ${prefix}roll `)
+			.setColor("RANDOM")
+			.setDescription(`
+			** Description: ** You can roll by number it support you in giveaways...etc
+			** Usage: **
+		${prefix}roll [number]
+			** Example: **
+			${prefix}roll 5
+			${prefix}roll 15
+			`)
+			message.channel.send({embed})
+            return;
+            }
+    message.channel.send(Math.floor(Math.random() * args.join(' ')));
+            if (!args[0]) {
+          message.edit('1')
+          return;
         }
-    };
+    }
 });
+
+
+
+
+
 
 client.login(process.env.BOT_TOKEN);
