@@ -102,7 +102,7 @@
       "integrity": "sha512-D3RuNkynyHmEJIpD2qrgVkc9DQ23OrN/moAwZX4L8DfvszsJxpjQuUq3LMx6HoYji9fbIOBY18XWBsAux1ZZUA=="
     }
      {
-    "main": "app.js"
+    "main": "bot.js"
      }
   
   
