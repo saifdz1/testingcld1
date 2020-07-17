@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = "!"; 
+const prefix = "$"; 
 
 
 
@@ -38,7 +38,7 @@ client.user.setGame(` ALPHA 2020 `,"https://discord.gg/afxBYJn")
 
 client.on('message',message => {
   var args = message.content.split(" ");
-	if (message.content.startsWith("bot")){
+	if (message.content.startsWith(prefix + "bot")){
     var msg = `${Date.now() - message.createdTimestamp}`;
     var hoursing = (client.readyAt.getHours()+3);
     if (hoursing > 12) {
