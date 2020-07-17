@@ -55,7 +55,7 @@ client.on('message',message => {
         .addField('📶 Time Taken :', msg)
         .addField(':earth_asia: WebSocket :', client.ws.ping)
         .addField(':date: Uptime :', client.readyAt.getDate()+"/"+(client.readyAt.getMonth()+1)+"/"+client.readyAt.getFullYear()+" - "+(hoursing)+":"+client.readyAt.getMinutes()+":"+client.readyAt.getSeconds()+" (Mecca time)")
-        .addField(':crown: Owners :', " ALPHA ")
+        .addField(':crown: Owners :', " ALPHA Team 2020 ")
         message.channel.send(embed);
       }
 });
