@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
-const client = new Discord.Client();
-const prefix = "$"; 
+const Client = new Discord.Client();
 
 
 
@@ -8,26 +7,13 @@ const prefix = "$";
 
 client.on('ready',  () => {
   console.log('Please wait !');
+  console.log('===============');
   console.log('Maya Bot test !');
   console.log('Maya Bot test !');
-  console.log('Maya Bot test !');
-  console.log('Maya Bot test !');
-  console.log('Maya Bot test !');
-  console.log('Maya Bot test !');
-  console.log('Maya Bot test !');
-  console.log('Bot is online !');
   console.log('===============');
 
-client.user.setStatus("dnd");
-
-
 });
 
-
-
-client.on('ready',  () => {
-Client.user.setGame(` Hi ! | $help . `,'https://www.twitch.tv/ntbquavodegreat');
-});
 
 
 client.on('message', message => {
