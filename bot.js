@@ -37,38 +37,33 @@ client.user.setGame(` ALPHA 2020 `,"https://discord.gg/afxBYJn")
 
 
 
-client.on('message', message => {
-if(!message.channel.guild) return;
-if (message.content.startsWith("+ping")) {
-    message.channel.sendMessage(`Ping ! \`${Date.now() - message.createdTimestamp} ms\`:watch:`);
+client.on('message',message => {
+  var args = message.content.split(" ");
+	if (message.content.startsWith("!bot")){
+    var msg = `${Date.now() - message.createdTimestamp}`;
+    var hoursing = (client.readyAt.getHours()+3);
+    if (hoursing > 12) {
+      var hoursing  = (hoursing-12);
     }
+        let embed = new Discord.MessageEmbed()
+        
+      .setColor('RANDOM')
+      .setThumbnail(message.guild.iconURL)
+      .setTitle(`:robot: Bot info `)
+      .addField(':desktop:  Servers :',client.guilds.size)
+      .addField(':busts_in_silhouette:   Users :',client.users.size)
+        .addField('📶 Time Taken :', msg)
+        .addField(':earth_asia: WebSocket :', client.ws.ping)
+        .addField(':date: Uptime :', client.readyAt.getDate()+"/"+(client.readyAt.getMonth()+1)+"/"+client.readyAt.getFullYear()+" - "+(hoursing)+":"+client.readyAt.getMinutes()+":"+client.readyAt.getSeconds()+" (Mecca time)")
+        .addField(':crown: Owners :', " ALPHA ")
+        message.channel.send(embed);
+      }
+  }
 });
 
 
 
 
-
-client.on('message', message => {
-    if (message.content.startsWith("$info")) {
-    message.channel.send({
-        embed: new Discord.RichEmbed()
-            .setAuthor(client.user.username,client.user.avatarURL)
-            .setThumbnail(client.user.avatarURL)
-            .setColor('RANDOM')
-            .setTitle('``INFO ALPHA BOT`` ')
-            .addField('``Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
-            .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
-            .addField('``Servers``', [client.guilds.size], true)
-            .addField('``Chlns``' , `[ ${client.channels.size} ]` , true)
-            .addField('``Users``' ,`[ ${client.users.size} ]` , true)
-            .addField('``Bot Name``' , `[ ${client.user.tag} ]` , true)
-            .addField('``Bot Id``' , `[ ${client.user.id} ]` , true)
-                  .addField('``Prefix``' , `[ ! ]` , true)
-                  .addField('``Bot Framework``' , `[ Java Script ]` , true)
-                  .addField('``المالك ``' , ` [ ★سہيہفُہ★ⓢⓐⓘⓕ#2042 ] ` , true)
-    })
-}
-});
 
 
 
