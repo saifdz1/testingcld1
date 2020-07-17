@@ -11,6 +11,9 @@ client.on('ready',  () => {
   console.log('Maya Bot test !');
   console.log('Maya Bot test !');
   console.log('===============');
+	
+  client.user.setActivity('!help', { type: 'WATCHING' })
+  client.user.setStatus("dnd")
 
 });
 
