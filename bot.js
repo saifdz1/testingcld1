@@ -44,7 +44,7 @@ client.on('message',message => {
     if (hoursing > 12) {
       var hoursing  = (hoursing-12);
     }
-        let embed = new Discord.MessageEmbed()
+        let embed = new  Discord.RichEmbed()
         
       .setColor('RANDOM')
       .setThumbnail(message.guild.iconURL)
